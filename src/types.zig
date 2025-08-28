@@ -32,8 +32,6 @@ pub const VertexArray = enum(UInt) {
     pub const delete = gl.deleteVertexArray;
     pub const gen = gl.genVertexArray;
     pub const bind = gl.bindVertexArray;
-    pub const enableVertexAttribute = gl.enableVertexArrayAttrib;
-    pub const disableVertexAttribute = gl.disableVertexArrayAttrib;
 
     pub const attribFormat = gl.vertexArrayAttribFormat;
     pub const attribIFormat = gl.vertexArrayAttribIFormat;
@@ -53,11 +51,6 @@ pub const Buffer = enum(UInt) {
     pub const gen = gl.genBuffer;
     pub const bind = gl.bindBuffer;
     pub const delete = gl.deleteBuffer;
-    pub const data = gl.namedBufferData;
-    pub const subData = gl.namedBufferSubData;
-    pub const storage = gl.namedBufferStorage;
-    pub const mapRange = gl.mapNamedBufferRange;
-    pub const unmap = gl.unmapNamedBuffer;
 };
 
 pub const Shader = enum(UInt) {

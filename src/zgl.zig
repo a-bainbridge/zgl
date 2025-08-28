@@ -393,16 +393,6 @@ pub fn disableVertexAttribArray(index: u32) void {
     checkError();
 }
 
-pub fn enableVertexArrayAttrib(vertexArray: types.VertexArray, index: u32) void {
-    binding.enableVertexArrayAttrib(@intFromEnum(vertexArray), index);
-    checkError();
-}
-
-pub fn disableVertexArrayAttrib(vertexArray: types.VertexArray, index: u32) void {
-    binding.disableVertexArrayAttrib(@intFromEnum(vertexArray), index);
-    checkError();
-}
-
 pub const Type = enum(types.Enum) {
     byte = binding.BYTE,
     short = binding.SHORT,
@@ -574,8 +564,6 @@ pub const BufferTarget = enum(types.Enum) {
     pixel_pack_buffer = binding.PIXEL_PACK_BUFFER,
     /// Texture data source
     pixel_unpack_buffer = binding.PIXEL_UNPACK_BUFFER,
-    /// Query result buffer
-    query_buffer = binding.QUERY_BUFFER,
     /// Read-write storage for shaders
     shader_storage_buffer = binding.SHADER_STORAGE_BUFFER,
     /// Texture data buffer
@@ -632,37 +620,6 @@ pub const BufferUsage = enum(types.Enum) {
     dynamic_read = binding.DYNAMIC_READ,
     dynamic_copy = binding.DYNAMIC_COPY,
 };
-
-// using align(1) as we are not required to have aligned data here
-pub fn namedBufferData(buf: types.Buffer, comptime T: type, items: []align(1) const T, usage: BufferUsage) void {
-    binding.namedBufferData(
-        @intFromEnum(buf),
-        cs2gl(@sizeOf(T) * items.len),
-        items.ptr,
-        @intFromEnum(usage),
-    );
-    checkError();
-}
-
-pub fn namedBufferSubData(buf: types.Buffer, offset: usize, comptime T: type, items: []align(1) const T) void {
-    binding.namedBufferSubData(
-        @intFromEnum(buf),
-        offset,
-        cs2gl(@sizeOf(T) * items.len),
-        items.ptr,
-    );
-    checkError();
-}
-
-pub fn namedBufferUninitialized(buf: types.Buffer, comptime T: type, count: usize, usage: BufferUsage) void {
-    binding.namedBufferData(
-        @intFromEnum(buf),
-        cs2gl(@sizeOf(T) * count),
-        null,
-        @intFromEnum(usage),
-    );
-    checkError();
-}
 
 pub fn bufferData(target: BufferTarget, comptime T: type, items: []align(1) const T, usage: BufferUsage) void {
     binding.bufferData(
