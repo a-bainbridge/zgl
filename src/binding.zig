@@ -1375,7 +1375,7 @@ pub const UNIFORM_BLOCK_REFERENCED_BY_FRAGMENT_SHADER = 0x8A46;
 pub const INVALID_INDEX = 0xFFFFFFFF;
 pub const STACK_UNDERFLOW = 0x0504;
 pub const STACK_OVERFLOW = 0x0503;
-
+pub const MIRROR_CLAMP_TO_EDGE = 0x8743;
 
 pub fn texStorage2D(_target: GLenum, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexStorage2D, .{_target, _levels, _internalformat, _width, _height});
